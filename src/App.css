@@ -1,0 +1,280 @@
+/* ============================================================
+   App Shell — Layout & Placeholder Styles
+   ============================================================ */
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-void);
+}
+
+.app-shell {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: app-enter 0.5s var(--ease-cinematic) both;
+}
+
+@keyframes app-enter {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Workspace ── */
+.app-workspace {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.workspace-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ── Home placeholder layout ── */
+.home-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ── Preview Monitor placeholder ── */
+.placeholder-monitor {
+  flex: 1;
+  background: var(--bg-monitor);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.placeholder-monitor::before {
+  /* Vignette */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  pointer-events: none;
+}
+
+.placeholder-monitor__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  z-index: 1;
+}
+
+.placeholder-monitor__label {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  opacity: 0.15;
+}
+
+.placeholder-monitor__sub {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-ghost);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Safe area guide lines */
+.safe-area {
+  position: absolute;
+  inset: 5%;
+  border: 1px solid rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+
+.safe-area::before {
+  content: '';
+  position: absolute;
+  inset: 5%;
+  border: 1px solid rgba(255,255,255,0.025);
+}
+
+/* ── Timeline placeholder ── */
+.placeholder-timeline {
+  height: var(--timeline-h);
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.timeline-ruler {
+  height: var(--ruler-h);
+  background: var(--bg-app);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: flex-end;
+  padding-left: var(--track-header-w);
+  overflow: hidden;
+}
+
+.ruler-tick {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 80px;
+  padding-bottom: 4px;
+}
+
+.ruler-tick span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-ghost);
+  letter-spacing: 0.06em;
+}
+
+.ruler-tick::before {
+  content: '';
+  width: 1px;
+  height: 6px;
+  background: var(--border-subtle);
+  margin-bottom: 2px;
+}
+
+.timeline-tracks {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.track-row {
+  display: flex;
+  align-items: center;
+  height: var(--track-h);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.track-header {
+  width: var(--track-header-w);
+  flex-shrink: 0;
+  padding: 0 var(--space-3);
+  border-right: 1px solid var(--border-subtle);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: var(--bg-app);
+}
+
+.track-body {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Fake clip blocks */
+.fake-clip {
+  height: 22px;
+  background: var(--bg-clip);
+  border: 1px solid var(--border-panel);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  animation: clip-pulse 3s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+.fake-clip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.03),
+    transparent
+  );
+}
+
+@keyframes clip-pulse {
+  from { border-color: var(--border-panel); }
+  to   { border-color: var(--border-active); }
+}
+
+/* Fake playhead */
+.fake-playhead {
+  position: absolute;
+  bottom: 0;
+  left: calc(var(--track-header-w) + 180px);
+  width: 1px;
+  height: 100%;
+  background: var(--accent-cyan);
+  box-shadow: var(--glow-cyan);
+  z-index: var(--z-playhead);
+  pointer-events: none;
+}
+
+.fake-playhead::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--accent-cyan);
+}
+
+/* ── Generic placeholder panel ── */
+.placeholder-panel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  position: relative;
+}
+
+.placeholder-panel__corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--panel-color, var(--border-active));
+  border-style: solid;
+}
+
+.placeholder-panel__corner.tl { top: 24px; left: 24px; border-width: 1px 0 0 1px; }
+.placeholder-panel__corner.tr { top: 24px; right: 24px; border-width: 1px 1px 0 0; }
+.placeholder-panel__corner.bl { bottom: 24px; left: 24px; border-width: 0 0 1px 1px; }
+.placeholder-panel__corner.br { bottom: 24px; right: 24px; border-width: 0 1px 1px 0; }
+
+.placeholder-panel__sub {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-ghost);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,180 @@
+/* ============================================================
+   Top Bar — Software chrome header
+   ============================================================ */
+
+.topbar {
+  height: var(--topbar-h);
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-4);
+  gap: var(--space-4);
+  flex-shrink: 0;
+  z-index: var(--z-topbar);
+  position: relative;
+}
+
+/* ── Left ── */
+.topbar__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 0;
+}
+
+.topbar__logo {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.topbar__logo-bracket {
+  color: var(--accent-cyan);
+  font-weight: 300;
+  font-size: 1.1em;
+}
+
+.topbar__filename {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Nav ── */
+.topbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.topbar__nav-item {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: none;
+  border: none;
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-sm);
+  transition:
+    color var(--dur-fast) ease,
+    background var(--dur-fast) ease;
+  position: relative;
+}
+
+.topbar__nav-num {
+  font-size: 0.7em;
+  opacity: 0.5;
+}
+
+.topbar__nav-item:hover {
+  color: var(--text-primary);
+  background: var(--bg-clip);
+}
+
+.topbar__nav-item.active {
+  color: var(--accent-cyan);
+  background: var(--accent-cyan-trace);
+}
+
+.topbar__nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 1px;
+  background: var(--accent-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+/* ── Right ── */
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.topbar__fps {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.topbar__sound-btn {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  padding: var(--space-1);
+  transition: color var(--dur-fast) ease;
+  line-height: 1;
+}
+
+.topbar__sound-btn.on { color: var(--accent-green); }
+.topbar__sound-btn:hover { color: var(--text-primary); }
+
+.topbar__timecode {
+  font-size: var(--text-sm);
+  min-width: 90px;
+  text-align: right;
+}
+
+.topbar__divider-v {
+  width: 1px;
+  height: 20px;
+  background: var(--border-subtle);
+  flex-shrink: 0;
+}
+
+/* ── Audio Meter ── */
+.audio-meter {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5px;
+  height: 14px;
+}
+
+.audio-meter__bar {
+  width: 2px;
+  background: var(--text-ghost);
+  border-radius: 1px;
+  height: 30%;
+  transform-origin: bottom;
+  transition: background var(--dur-fast) ease;
+}
+
+.audio-meter.active .audio-meter__bar {
+  background: var(--accent-green);
+  height: calc(var(--bar-h) * 100%);
+  animation: meter-pulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes meter-pulse {
+  from { height: calc(var(--bar-h, 0.5) * 40%); }
+  to   { height: calc(var(--bar-h, 0.5) * 100%); }
+}

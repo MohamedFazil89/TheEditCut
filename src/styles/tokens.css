@@ -1,0 +1,188 @@
+/* ============================================================
+   THE CUT ROOM — Design Tokens
+   Post-production UI system
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+:root {
+  /* ─────────────────────────────────────────
+     BACKGROUNDS — Panel hierarchy
+  ───────────────────────────────────────── */
+  --bg-void:        #080A0C;   /* Deepest black — body/page */
+  --bg-app:         #0D1014;   /* App chrome background */
+  --bg-panel:       #111518;   /* Panel backgrounds */
+  --bg-panel-alt:   #151A1F;   /* Elevated panel */
+  --bg-track:       #0F1317;   /* Timeline track rows */
+  --bg-clip:        #1A2128;   /* Clip block default */
+  --bg-clip-hover:  #1F2830;   /* Clip block hover */
+  --bg-monitor:     #090C0F;   /* Preview monitor black */
+  --bg-overlay:     rgba(8,10,12,0.85); /* Modal/overlay */
+
+  /* ─────────────────────────────────────────
+     BORDERS — Structural lines
+  ───────────────────────────────────────── */
+  --border-subtle:  #1C2228;   /* Hairline separators */
+  --border-panel:   #232C35;   /* Panel edges */
+  --border-active:  #2E3D4A;   /* Selected/active state */
+  --border-focus:   #4A8FA8;   /* Keyboard focus ring */
+
+  /* ─────────────────────────────────────────
+     TEXT HIERARCHY
+  ───────────────────────────────────────── */
+  --text-primary:   #E8ECF0;   /* Main readable text */
+  --text-secondary: #8A9BAA;   /* Labels, metadata */
+  --text-tertiary:  #4E6070;   /* Timestamps, disabled */
+  --text-ghost:     #2A3540;   /* Watermarks, placeholders */
+  --text-mono:      #6AAECC;   /* Timecode, data readouts */
+  --text-label:     #C4D4E0;   /* UI labels */
+
+  /* ─────────────────────────────────────────
+     ACCENT SYSTEM — Role-based colors
+  ───────────────────────────────────────── */
+
+  /* Cyan — Active selection, playhead, focus */
+  --accent-cyan:        #00C8E8;
+  --accent-cyan-dim:    #0A7A94;
+  --accent-cyan-glow:   rgba(0,200,232,0.15);
+  --accent-cyan-trace:  rgba(0,200,232,0.06);
+
+  /* Purple — Motion graphics, VFX track */
+  --accent-purple:      #9B6FE8;
+  --accent-purple-dim:  #5C3D9A;
+  --accent-purple-glow: rgba(155,111,232,0.15);
+
+  /* Amber — Markers, warnings, in/out points */
+  --accent-amber:       #E8A020;
+  --accent-amber-dim:   #7A5210;
+  --accent-amber-glow:  rgba(232,160,32,0.15);
+
+  /* Red — Record, export, render states */
+  --accent-red:         #E84040;
+  --accent-red-dim:     #7A1A1A;
+  --accent-red-glow:    rgba(232,64,64,0.18);
+  --accent-red-pulse:   rgba(232,64,64,0.08);
+
+  /* Green — Audio signal, online/ready */
+  --accent-green:       #40C880;
+  --accent-green-dim:   #1A6040;
+  --accent-green-glow:  rgba(64,200,128,0.15);
+
+  /* Orange — Short-form, Reels track */
+  --accent-orange:      #E87030;
+  --accent-orange-dim:  #7A3810;
+
+  /* ─────────────────────────────────────────
+     CATEGORY / TRACK COLORS
+  ───────────────────────────────────────── */
+  --track-longform:     #4A7FD4;   /* V1 — Long-form */
+  --track-shortform:    #E87030;   /* V2 — Reels/Short */
+  --track-motion:       #9B6FE8;   /* V3 — Motion graphics */
+  --track-commercial:   #40C880;   /* V4 — Commercial */
+  --track-cinematic:    #E8A020;   /* V5 — Cinematic */
+  --track-audio:        #4AC8A0;   /* A1 — Audio */
+
+  /* ─────────────────────────────────────────
+     STATUS COLORS
+  ───────────────────────────────────────── */
+  --status-online:      #40C880;
+  --status-offline:     #E84040;
+  --status-rendering:   #E8A020;
+  --status-queued:      #4A7FD4;
+  --status-complete:    #40C880;
+
+  /* ─────────────────────────────────────────
+     TYPOGRAPHY SYSTEM
+  ───────────────────────────────────────── */
+  --font-display:   'Syne', sans-serif;       /* Headlines, section titles */
+  --font-body:      'DM Sans', sans-serif;    /* Readable body copy */
+  --font-mono:      'IBM Plex Mono', monospace; /* Timecode, data, labels */
+
+  /* Type scale — Major Third (1.25) */
+  --text-xs:    0.64rem;    /* 10.24px — micro labels */
+  --text-sm:    0.8rem;     /* 12.8px — secondary */
+  --text-base:  1rem;       /* 16px — base */
+  --text-md:    1.25rem;    /* 20px */
+  --text-lg:    1.563rem;   /* 25px */
+  --text-xl:    1.953rem;   /* 31px */
+  --text-2xl:   2.441rem;   /* 39px */
+  --text-3xl:   3.052rem;   /* 49px */
+  --text-4xl:   3.815rem;   /* 61px */
+  --text-5xl:   4.768rem;   /* 76px */
+
+  /* ─────────────────────────────────────────
+     SPACING
+  ───────────────────────────────────────── */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+  --space-24:  6rem;
+
+  /* ─────────────────────────────────────────
+     LAYOUT — Panel sizing
+  ───────────────────────────────────────── */
+  --topbar-h:       40px;
+  --monitor-h:      calc(100vh - 40px - 220px);  /* Dynamic */
+  --timeline-h:     220px;
+  --track-h:        32px;
+  --track-header-w: 120px;
+  --ruler-h:        24px;
+  --inspector-w:    280px;
+  --bins-w:         200px;
+
+  /* ─────────────────────────────────────────
+     MOTION — Timing system
+  ───────────────────────────────────────── */
+  --ease-cut:       cubic-bezier(0.0, 0.0, 1.0, 1.0);     /* Hard cut */
+  --ease-dissolve:  cubic-bezier(0.4, 0.0, 0.6, 1.0);     /* Cross dissolve */
+  --ease-snap:      cubic-bezier(0.0, 0.8, 0.2, 1.0);     /* Snap/spring */
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);         /* Cinematic ease-out */
+  --ease-ramp:      cubic-bezier(0.8, 0.0, 0.2, 1.0);     /* Speed ramp */
+
+  --dur-micro:      80ms;
+  --dur-fast:       140ms;
+  --dur-ui:         200ms;
+  --dur-smooth:     360ms;
+  --dur-cinematic:  600ms;
+  --dur-dramatic:   900ms;
+  --dur-boot:       2400ms;
+
+  /* ─────────────────────────────────────────
+     VISUAL EFFECTS
+  ───────────────────────────────────────── */
+  --glow-cyan:    0 0 12px rgba(0,200,232,0.4), 0 0 40px rgba(0,200,232,0.12);
+  --glow-amber:   0 0 12px rgba(232,160,32,0.4), 0 0 40px rgba(232,160,32,0.12);
+  --glow-red:     0 0 12px rgba(232,64,64,0.4),  0 0 40px rgba(232,64,64,0.12);
+  --glow-purple:  0 0 12px rgba(155,111,232,0.4),0 0 40px rgba(155,111,232,0.12);
+
+  --shadow-panel: 0 2px 16px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.03);
+  --shadow-clip:  0 1px 6px rgba(0,0,0,0.5);
+  --shadow-float: 0 8px 40px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6);
+
+  /* Scanline / grain overlay */
+  --scanline-opacity: 0.025;
+  --grain-opacity:    0.04;
+
+  /* Border radius */
+  --radius-sm:  2px;
+  --radius-md:  4px;
+  --radius-lg:  6px;
+  --radius-xl:  8px;
+
+  /* Z-index layers */
+  --z-track:      10;
+  --z-playhead:   20;
+  --z-marker:     25;
+  --z-monitor:    30;
+  --z-topbar:     40;
+  --z-overlay:    50;
+  --z-boot:       100;
+}
