@@ -1,0 +1,139 @@
+/* FILE: src/components/work/SequenceView.css */
+
+.seq-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ── Now-playing compact strip ── */
+.seq-now-playing {
+  height: 36px;
+  background: var(--bg-app);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.seq-np__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.seq-np__tc {
+  font-size: 12px;
+  color: var(--text-mono);
+  min-width: 80px;
+}
+
+.seq-np__transport {
+  display: flex;
+  gap: 3px;
+}
+
+.seq-np__btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 8px;
+  width: 20px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--dur-fast) ease;
+}
+
+.seq-np__btn:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.1);
+}
+
+.seq-np__btn--play {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan-dim);
+}
+
+.seq-np__btn--play.playing {
+  color: var(--accent-amber);
+  border-color: var(--accent-amber-dim);
+}
+
+/* ── Center info ── */
+.seq-np__center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.seq-np__title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.seq-np__sep {
+  color: var(--text-ghost);
+  flex-shrink: 0;
+}
+
+.seq-np__client {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.seq-np__idle {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-ghost);
+  letter-spacing: 0.06em;
+}
+
+/* ── Right zoom ── */
+.seq-np__right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.seq-np__zoom {
+  min-width: 34px;
+  text-align: center;
+  font-size: 8px;
+}
+
+/* ── Timeline fills remaining space ── */
+.seq-view__timeline {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 0;
+}
+
+.seq-view__timeline::-webkit-scrollbar { height: 4px; }
+.seq-view__timeline::-webkit-scrollbar-track { background: var(--bg-app); }
+.seq-view__timeline::-webkit-scrollbar-thumb { background: var(--border-active); border-radius: 2px; }
+
+/* In Work section, timeline fills the full height */
+.seq-view__timeline .timeline {
+  height: 100%;
+}

@@ -1,0 +1,82 @@
+/* FILE: src/sections/HomeSection.css
+
+   Layout: full-height flex column.
+   Monitor takes flex:1 (expands to fill space above timeline).
+   Timeline is fixed height via --timeline-h token.
+   Inspector is absolutely positioned right:0, animates width.
+*/
+
+.home-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  position: relative;
+}
+
+/* Main area (monitor + timeline) shifts left when inspector opens */
+.home-section__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  transition: margin-right var(--dur-smooth) var(--ease-cinematic);
+}
+
+.home-section__main--shifted {
+  margin-right: 240px; /* matches Inspector open width */
+}
+
+/* Timeline wrapper — needed so the timeline can scroll horizontally */
+.home-section__timeline-wrap {
+  flex-shrink: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.home-section__timeline-wrap::-webkit-scrollbar {
+  height: 4px;
+}
+.home-section__timeline-wrap::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+.home-section__timeline-wrap::-webkit-scrollbar-thumb {
+  background: var(--border-active);
+  border-radius: 2px;
+}
+
+/* ── Scrub indicator (center-bottom HUD) ── */
+.scrub-indicator {
+  position: absolute;
+  bottom: calc(var(--timeline-h) + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-panel);
+  border: 1px solid var(--accent-cyan-dim);
+  border-radius: var(--radius-md);
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  z-index: var(--z-overlay);
+  animation: scrub-appear 0.1s var(--ease-cinematic) both;
+  box-shadow: var(--glow-cyan);
+}
+
+@keyframes scrub-appear {
+  from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.scrub-indicator__label {
+  font-size: 8px;
+  color: var(--accent-cyan);
+}
+
+.scrub-indicator__tc {
+  font-size: 12px;
+  color: var(--text-mono);
+}

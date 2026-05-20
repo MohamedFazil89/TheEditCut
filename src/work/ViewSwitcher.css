@@ -1,0 +1,122 @@
+/* FILE: src/components/work/ViewSwitcher.css */
+
+.view-switcher {
+  height: 38px;
+  background: var(--bg-app);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* ── Mode tabs ── */
+.view-switcher__tabs {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.view-switcher__tab {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: none;
+  border: 1px solid transparent;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--dur-fast) ease;
+  white-space: nowrap;
+}
+
+.view-switcher__icon {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.view-switcher__shortcut {
+  font-size: 8px;
+  opacity: 0.4;
+  margin-left: 1px;
+}
+
+.view-switcher__tab:hover {
+  color: var(--text-secondary);
+  background: var(--bg-clip);
+}
+
+.view-switcher__tab--active {
+  color: var(--accent-cyan);
+  background: var(--accent-cyan-trace);
+  border-color: var(--accent-cyan-dim);
+}
+
+.view-switcher__tab--active .view-switcher__icon {
+  opacity: 1;
+}
+
+/* ── Center ── */
+.view-switcher__center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.view-switcher__title {
+  font-size: 8px;
+}
+
+/* ── Right ── */
+.view-switcher__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.view-switcher__count {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.view-switcher__count-n {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-cyan);
+}
+
+.view-switcher__count-lbl {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-ghost);
+  letter-spacing: 0.08em;
+}
+
+.view-switcher__kbd-hint {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-ghost);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.view-switcher__kbd-hint kbd {
+  background: var(--bg-clip);
+  border: 1px solid var(--border-panel);
+  border-radius: 2px;
+  padding: 1px 5px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-secondary);
+}

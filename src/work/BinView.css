@@ -1,0 +1,214 @@
+/* FILE: src/components/work/BinView.css */
+
+.bin-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  padding: 14px;
+  overflow-y: auto;
+  flex: 1;
+  align-content: start;
+}
+
+.bin-view::-webkit-scrollbar { width: 4px; }
+.bin-view::-webkit-scrollbar-track { background: transparent; }
+.bin-view::-webkit-scrollbar-thumb { background: var(--border-active); border-radius: 2px; }
+
+/* ── Empty state ── */
+.bin-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.bin-empty__icon {
+  font-size: 28px;
+  color: var(--text-ghost);
+}
+
+.bin-empty__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-ghost);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Card ── */
+.bin-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast) ease,
+    transform    var(--dur-fast) var(--ease-cinematic),
+    box-shadow   var(--dur-fast) ease;
+  user-select: none;
+}
+
+.bin-card:hover {
+  border-color: color-mix(in srgb, var(--card-color) 50%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+}
+
+.bin-card--active {
+  border-color: var(--card-color);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--card-color) 30%, transparent),
+              0 6px 24px rgba(0,0,0,0.5);
+}
+
+/* ── Thumbnail ── */
+.bin-card__thumb {
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-monitor);
+}
+
+.bin-card__thumb-bg {
+  position: absolute;
+  inset: 0;
+}
+
+/* Hover scrub progress bar along bottom of thumb */
+.bin-card__scrub {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  transition: width 40ms linear;
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* Duration badge — bottom-right */
+.bin-card__dur {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: rgba(255,255,255,0.7);
+  background: rgba(0,0,0,0.6);
+  padding: 1px 5px;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+}
+
+/* Featured star — top-right */
+.bin-card__star {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 10px;
+  color: var(--accent-amber);
+  text-shadow: 0 0 6px rgba(232,160,32,0.6);
+}
+
+/* Category pill — top-left */
+.bin-card__cat {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-family: var(--font-mono);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1px solid;
+  text-transform: uppercase;
+}
+
+/* Scrub overlay */
+.bin-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: opacity var(--dur-fast) ease;
+}
+
+.bin-card__overlay--visible {
+  opacity: 1;
+}
+
+.bin-card__overlay-text {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.14em;
+  pointer-events: none;
+}
+
+/* ── Info ── */
+.bin-card__info {
+  padding: 10px 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bin-card__title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bin-card__client {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.bin-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bin-card__year,
+.bin-card__ta {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-ghost);
+  letter-spacing: 0.04em;
+}
+
+/* ── Software chips ── */
+.bin-card__chips {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.bin-card__chip {
+  font-family: var(--font-mono);
+  font-size: 7px;
+  color: var(--text-ghost);
+  background: var(--bg-clip);
+  border: 1px solid var(--border-subtle);
+  padding: 1px 5px;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+}
+
+.bin-card__chip--more {
+  color: var(--text-tertiary);
+}

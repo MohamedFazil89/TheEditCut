@@ -1,0 +1,171 @@
+/* FILE: src/components/clips/ClipBlock.css */
+
+.clip-block {
+  position: absolute;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--clip-color) 40%, transparent);
+  background: color-mix(in srgb, var(--clip-color) 14%, var(--bg-clip));
+  cursor: pointer;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  transition:
+    filter var(--dur-fast) var(--ease-cinematic),
+    transform var(--dur-fast) var(--ease-cinematic),
+    border-color var(--dur-fast) ease;
+  user-select: none;
+}
+
+.clip-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.clip-block--hover {
+  filter: brightness(1.35);
+  transform: scaleY(1.06);
+  border-color: color-mix(in srgb, var(--clip-color) 80%, transparent);
+  z-index: 5;
+}
+
+.clip-block--active {
+  border-color: var(--clip-color);
+  filter: brightness(1.2);
+  z-index: 6;
+}
+
+.clip-block--offline {
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.clip-block__active-glow {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--clip-color) 12%, transparent);
+  animation: clip-pulse 2s ease-in-out infinite alternate;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+@keyframes clip-pulse {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+.clip-block__scrub-bar {
+  position: absolute;
+  left: 0; top: 0;
+  height: 2px;
+  background: var(--clip-color);
+  box-shadow: 0 0 6px var(--clip-color);
+  transition: width 40ms linear;
+  pointer-events: none;
+  z-index: 4;
+  border-radius: 1px;
+}
+
+.clip-block__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5px;
+  min-width: 0;
+  gap: 1px;
+  overflow: hidden;
+}
+
+.clip-block__label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(255,255,255,0.8);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.clip-block__client {
+  font-family: var(--font-mono);
+  font-size: 7px;
+  color: rgba(255,255,255,0.4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1;
+}
+
+.clip-block__star {
+  position: absolute;
+  top: 2px; right: 4px;
+  font-size: 7px;
+  color: var(--accent-amber);
+  z-index: 3;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.clip-block__offline {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 7px;
+  color: var(--accent-red);
+  letter-spacing: 0.08em;
+  background: rgba(232,64,64,0.06);
+}
+
+.clip-block__tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-panel);
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius-md);
+  padding: 5px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  pointer-events: none;
+  z-index: 50;
+  white-space: nowrap;
+  animation: tip-in 0.1s var(--ease-cinematic) both;
+  box-shadow: var(--shadow-float);
+}
+
+@keyframes tip-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.clip-block__tooltip-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.clip-block__tooltip-meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-secondary);
+}
+
+.clip-block__tooltip-dur {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-mono);
+  align-self: flex-end;
+}
