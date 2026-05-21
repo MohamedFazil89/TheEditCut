@@ -1,8 +1,9 @@
 // ============================================================
 // THE CUT ROOM — Core TypeScript Types
+// Consolidated type definitions for the entire application
 // ============================================================
 
-// ── Project / Clip Types ──────────────────────────────────
+// ── Track & Category Types ────────────────────────────────
 
 export type TrackLane = 'V1' | 'V2' | 'V3' | 'V4' | 'V5' | 'A1' | 'A2';
 
@@ -22,6 +23,8 @@ export interface ScrubFrame {
   src: string;         // image URL
 }
 
+// ── Project Type ──────────────────────────────────────────
+
 export interface Project {
   id: string;
   slug: string;
@@ -33,26 +36,26 @@ export interface Project {
   // Display
   thumbnail: string;
   posterSrc: string;
-  teaserSrc?: string;        // Short muted MP4 loop
-  scrubFrames?: ScrubFrame[]; // Hover-scrub sprite frames
+  teaserSrc?: string;
+  scrubFrames?: ScrubFrame[];
 
   // Timeline placement
-  clipStart: number;         // Position on timeline (seconds)
-  clipDuration: number;      // Width of clip block
-  trackIndex: number;        // Visual row order
+  clipStart: number;
+  clipDuration: number;
+  trackIndex: number;
 
   // Metadata
   year: number;
   description: string;
   tags: string[];
-  software: string[];        // Premiere, DaVinci, AE, etc.
+  software: string[];
   deliverables: string[];
-  turnaround?: string;       // "3 weeks"
+  turnaround?: string;
   featured: boolean;
   status: ProjectStatus;
   markerColor?: string;
 
-  // Content for detail page
+  // Content
   scenes?: Scene[];
   layers?: Layer[];
   outcomes?: string[];
@@ -76,11 +79,48 @@ export interface Layer {
   color: string;
 }
 
-// ── Timeline Types ────────────────────────────────────────
+// ── Timeline Types (Phase 2 additions) ───────────────────
+
+export interface Clip {
+  id: string;
+  projectId: string;
+  trackId: string;
+  title: string;
+  startTime: number;
+  duration: number;
+  thumbnailUrl?: string;
+  previewFrames?: string[];
+  category: ProjectCategory;
+  color: string;
+  featured?: boolean;
+}
+
+export interface Marker {
+  id: string;
+  time: number;
+  label: string;
+  color: string;
+  type: 'category' | 'milestone' | 'testimonial';
+}
+
+export interface Timeline {
+  duration: number;
+  currentTime: number;
+  zoom: number;
+  isPlaying: boolean;
+  isScrubbing: boolean;
+}
+
+export interface PlayheadState {
+  position: number;   // 0-100 percentage
+  time: number;       // seconds
+  isDragging: boolean;
+  snapToMarkers: boolean;
+}
 
 export interface TimelineMarker {
   id: string;
-  position: number;      // seconds on timeline
+  position: number;
   label: string;
   color: string;
   type: 'category' | 'milestone' | 'award' | 'cta';
@@ -90,17 +130,17 @@ export interface Track {
   id: TrackLane;
   label: string;
   color: string;
-  height: number;        // px
+  height: number;
   clips: Project[];
   muted?: boolean;
   locked?: boolean;
 }
 
 export interface TimelineState {
-  currentTime: number;        // Playhead position (seconds)
-  duration: number;           // Total sequence duration
-  zoom: number;               // px per second
-  scrollX: number;            // Horizontal scroll offset
+  currentTime: number;
+  duration: number;
+  zoom: number;
+  scrollX: number;
   isPlaying: boolean;
   isScrubbing: boolean;
   activeClip: Project | null;
@@ -129,7 +169,7 @@ export type BootPhase =
 
 export interface BootState {
   phase: BootPhase;
-  progress: number;          // 0–100
+  progress: number;
   messages: string[];
   currentMessage: string;
 }
@@ -163,7 +203,7 @@ export interface ContactSubmission {
 
 export type ViewMode = 'sequence' | 'bin' | 'storyboard';
 export type Section = 'home' | 'work' | 'about' | 'contact' | 'project';
-export type ThemeMode = 'dark' | 'darker'; // Always dark; option for deeper black
+export type ThemeMode = 'dark' | 'darker';
 
 export interface AppState {
   currentSection: Section;
